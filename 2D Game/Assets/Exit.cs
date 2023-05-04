@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using UnityEngine.SceneManagement;
 using UnityEngine;
 
 public class Exit : MonoBehaviour
@@ -13,8 +14,13 @@ public class Exit : MonoBehaviour
     {
         if(Input.GetButtonDown("Cancel"))
         {
-            Debug.Log("QUIT!");
-            Application.Quit();
+            GoBack();
         }
+    }
+
+    void GoBack()
+    {
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex - 1);
+        Cursor.visible = true;
     }
 }
