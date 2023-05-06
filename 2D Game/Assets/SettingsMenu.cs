@@ -54,6 +54,18 @@ public class SettingsMenu : MonoBehaviour
 
     public void SetQuality(int qualityIndex)
     {
+        if (qualityIndex == 0)
+        {
+            qualityIndex = 2;
+        }
+        else if (qualityIndex == 1)
+        {
+            qualityIndex = 0;
+        }
+        else
+        {
+            qualityIndex = 1;
+        }
         QualitySettings.SetQualityLevel(qualityIndex);
     }
 
