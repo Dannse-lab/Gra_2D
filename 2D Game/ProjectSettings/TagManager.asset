@@ -5,14 +5,21 @@ TagManager:
   serializedVersion: 2
   tags:
   - Gem
+  - Enemy
   layers:
   - Default
   - TransparentFX
   - Ignore Raycast
-  - Player
+  - 
   - Water
   - UI
-  - BackGroung
+  - 
+  - 
+  - 
+  - 
+  - Player
+  - Enemy
+  - Gems
   - 
   - 
   - 
@@ -20,13 +27,7 @@ TagManager:
   - 
   - 
   - 
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
+  - BackGround
   - 
   - 
   - 
