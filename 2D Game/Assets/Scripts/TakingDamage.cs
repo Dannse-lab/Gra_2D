@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Enemy_Test : MonoBehaviour
+public class TakingDamage : MonoBehaviour
 {
     [SerializeField] private int damage; // Enemys damage value
 
