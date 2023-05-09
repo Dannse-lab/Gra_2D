@@ -6,6 +6,7 @@ TagManager:
   tags:
   - Gem
   - Enemy
+  - Detector
   layers:
   - Default
   - TransparentFX
@@ -16,7 +17,7 @@ TagManager:
   - 
   - 
   - 
-  - 
+  - Detection
   - Player
   - Enemy
   - Gems
@@ -45,6 +46,9 @@ TagManager:
     locked: 0
   - name: Default
     uniqueID: 0
+    locked: 0
+  - name: Objects
+    uniqueID: 1906278263
     locked: 0
   - name: ForeGround
     uniqueID: 2839598433

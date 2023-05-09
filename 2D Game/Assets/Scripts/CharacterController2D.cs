@@ -12,6 +12,7 @@ public class CharacterController2D : MonoBehaviour
     [SerializeField] private Transform m_CeilingCheck;                          // A position marking where to check for ceilings
     [SerializeField] private Collider2D m_CrouchDisableCollider;                // A collider that will be disabled when crouching
     [SerializeField] private Collider2D m_CrouchEnableCollider;                // A collider that will be enabled when crouching
+    [SerializeField] private LayerMask whatIsHead;
 
     const float k_GroundedRadius = .2f; // Radius of the overlap circle to determine if grounded
     private bool m_Grounded;            // Whether or not the player is grounded.
@@ -48,7 +49,6 @@ public class CharacterController2D : MonoBehaviour
         m_Grounded = false;
 
         // The player is grounded if a circlecast to the groundcheck position hits anything designated as ground
-        // This can be done using layers instead but Sample Assets will not overwrite your project settings.
         Collider2D[] colliders = Physics2D.OverlapCircleAll(m_GroundCheck.position, k_GroundedRadius, m_WhatIsGround);
         for (int i = 0; i < colliders.Length; i++)
         {
@@ -57,6 +57,15 @@ public class CharacterController2D : MonoBehaviour
                 m_Grounded = true;
                 if (!wasGrounded)
                     OnLandEvent.Invoke();
+            }
+        }
+        // The Player destroys enemy if a circlecast to the groundcheck position hits anything designated as enemy's head
+        Collider2D[] coll = Physics2D.OverlapCircleAll(m_GroundCheck.position, k_GroundedRadius, whatIsHead);
+        for (int i = 0; i < coll.Length; i++)
+        {
+            if (coll[i].gameObject != gameObject)
+            {
+                Destroy(coll[i].gameObject.transform.parent.gameObject);
             }
         }
     }
@@ -136,7 +145,7 @@ public class CharacterController2D : MonoBehaviour
         // If the player should jump...
         if (m_Grounded && jump)
         {
-            // Add a vertical force to the player.
+            // ... add a vertical force to the player.
             m_Grounded = false;
             m_Rigidbody2D.AddForce(new Vector2(0f, m_JumpForce));
         }
