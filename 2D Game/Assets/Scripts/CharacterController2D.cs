@@ -63,7 +63,7 @@ public class CharacterController2D : MonoBehaviour
         Collider2D[] coll = Physics2D.OverlapCircleAll(m_GroundCheck.position, k_GroundedRadius, whatIsHead);
         for (int i = 0; i < coll.Length; i++)
         {
-            if (coll[i].gameObject != gameObject)
+            if (coll[i].gameObject != gameObject && m_Rigidbody2D.velocity.y < 0)
             {
                 Destroy(coll[i].gameObject.transform.parent.gameObject);
             }
