@@ -42,7 +42,7 @@ public class EnemyMovement : MonoBehaviour
         }
         else
         {
-            if (transform.position.x < rightEdge) // Moving right
+            if (transform.position.x < rightEdge) // Moving left
             {
                 transform.position = new Vector3(transform.position.x + speed * Time.deltaTime,
                     transform.position.y, transform.position.z);
