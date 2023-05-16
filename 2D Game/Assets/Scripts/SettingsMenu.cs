@@ -3,18 +3,24 @@ using System.Collections.Generic;
 using UnityEngine.Audio;
 using UnityEngine.UI;
 using UnityEngine;
+using TMPro;
 
 
 public class SettingsMenu : MonoBehaviour
 {
     public AudioMixer audioMixer;
-
-    public Dropdown resolutionDropdown;
+    public Slider slider; // Reference to VolumeSlider
+    public Dropdown resolutionDropdown; // Reference to resolution options
+    public TMP_Dropdown qualityDropdown; // Refrence to quality options
 
     Resolution[] resolutions;
 
     void Start()
     {
+        qualityDropdown.value = QualitySettings.GetQualityLevel();
+        float x;
+        audioMixer.GetFloat("volume", out x);
+        slider.value = x;
         resolutions = Screen.resolutions;
 
         resolutionDropdown.ClearOptions();
@@ -54,18 +60,6 @@ public class SettingsMenu : MonoBehaviour
 
     public void SetQuality(int qualityIndex)
     {
-        if (qualityIndex == 0)
-        {
-            qualityIndex = 2;
-        }
-        else if (qualityIndex == 1)
-        {
-            qualityIndex = 0;
-        }
-        else
-        {
-            qualityIndex = 1;
-        }
         QualitySettings.SetQualityLevel(qualityIndex);
     }
 

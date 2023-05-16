@@ -4,7 +4,8 @@ using UnityEngine;
 
 public class PistonMovement : MonoBehaviour
 {
-    [SerializeField] private float movementDistance; // Distance that piston will travel
+    [SerializeField] private float downDistance; // Distance that piston will travel down
+    [SerializeField] private float upDistance; // Distance that piston will travel up
     [SerializeField] private float downSpeed; // Speed at which piston will be moving down
     [SerializeField] private float upSpeed; // Speed at which piston will be moving up
     public bool movingDown; // Direction of piston's movement
@@ -14,8 +15,8 @@ public class PistonMovement : MonoBehaviour
     // Function is called when the script instance is being loaded
     private void Awake()
     {
-        upEdge = transform.position.y - movementDistance; // Setting upper boundry
-        downEdge = transform.position.y; // Setting bottom boundry
+        upEdge = transform.position.y + upDistance; // Setting upper boundry
+        downEdge = transform.position.y - downDistance; // Setting bottom boundry
     }
 
     // Function is called every frame
@@ -23,7 +24,7 @@ public class PistonMovement : MonoBehaviour
     {
         if (movingDown)
         {
-            if (transform.position.y > upEdge) // Moving down
+            if (transform.position.y > downEdge) // Moving down
             {
                 transform.position = new Vector3(transform.position.x,
                     transform.position.y - downSpeed * Time.deltaTime, transform.position.z);
@@ -35,7 +36,7 @@ public class PistonMovement : MonoBehaviour
         }
         else
         {
-            if (transform.position.y < downEdge) // Moving up
+            if (transform.position.y < upEdge) // Moving up
             {
                 transform.position = new Vector3(transform.position.x,
                     transform.position.y + upSpeed * Time.deltaTime, transform.position.z);
