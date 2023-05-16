@@ -4,7 +4,8 @@ using UnityEngine;
 
 public class EnemyMovement : MonoBehaviour
 {
-    [SerializeField] private float movementDistance; // Distance that enemy will travel
+    [SerializeField] private float rMovementDistance; // Distance that enemy will travel to the right
+    [SerializeField] private float lMovementDistance; // Distance that enemy will travel to the left
     [SerializeField] private float speed; // Speed at which enemy will be moving
     public bool movingRight; // Direction of enemy's movement
     public float leftEdge; // Left movement boundry
@@ -15,9 +16,8 @@ public class EnemyMovement : MonoBehaviour
     // Function is called when the script instance is being loaded
     private void Awake()
     {
-        leftEdge = transform.position.x - movementDistance; // Setting left boundry
-        rightEdge = transform.position.x; // Setting left boundry
-        Flip(); // Flips the enemy
+        leftEdge = transform.position.x - lMovementDistance; // Setting left boundry
+        rightEdge = transform.position.x + rMovementDistance; // Setting right boundry
     }
 
     // Function is called every frame
@@ -29,9 +29,9 @@ public class EnemyMovement : MonoBehaviour
         }
         if(movingRight)
         {
-            if(transform.position.x > leftEdge) // Moving right
+            if(transform.position.x < rightEdge) // Moving right
             {
-                transform.position = new Vector3(transform.position.x - speed * Time.deltaTime,
+                transform.position = new Vector3(transform.position.x + speed * Time.deltaTime,
                     transform.position.y, transform.position.z);
             }
             else
@@ -42,9 +42,9 @@ public class EnemyMovement : MonoBehaviour
         }
         else
         {
-            if (transform.position.x < rightEdge) // Moving left
+            if (transform.position.x > leftEdge) // Moving left
             {
-                transform.position = new Vector3(transform.position.x + speed * Time.deltaTime,
+                transform.position = new Vector3(transform.position.x - speed * Time.deltaTime,
                     transform.position.y, transform.position.z);
             }
             else
