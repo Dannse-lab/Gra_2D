@@ -5,12 +5,12 @@ using UnityEngine.SceneManagement;
 
 public class PauseMenu : MonoBehaviour
 {
-    // Start is called before the first frame update
+    
     public static bool GameIsPaused = false;
 
     public GameObject pauseMenuUI;
 
-    // Update is called once per frame
+    // Sprawdza,czy gra jest zatrzymana czy nie, jak nie jest zatrzymana, to toczy siê gra, jak jest zatrzymana, to gra siê zatrzymuje
     void Update()
     {
       if(Input.GetKeyDown(KeyCode.Escape))
@@ -25,24 +25,27 @@ public class PauseMenu : MonoBehaviour
             }
         }
     }
-
+    // Wznów grê
     public void Resume()
     {
         pauseMenuUI.SetActive(false);
         Time.timeScale = 1f;
         GameIsPaused = false;
     }
+    // Zatrzymaj grê
     void Pause()
     {
         pauseMenuUI.SetActive(true);
         Time.timeScale = 0f;
         GameIsPaused = true;
     }
+    // Otwórz menu g³ówne z ekranu pauzy
     public void LoadMenu()
     {
         Time.timeScale = 1f;
         SceneManager.LoadScene("Menu");
     }
+    // Zamknij grê
     public void QuitGame()
     {
         Debug.Log("Quitting game ...");
