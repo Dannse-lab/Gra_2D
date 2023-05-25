@@ -13,7 +13,7 @@ public class PauseMenu : MonoBehaviour
     // Sprawdza,czy gra jest zatrzymana czy nie, jak nie jest zatrzymana, to toczy siê gra, jak jest zatrzymana, to gra siê zatrzymuje
     void Update()
     {
-      if(Input.GetKeyDown(KeyCode.Escape))
+      if (Input.GetKeyDown(KeyCode.Escape))
         {
             if (GameIsPaused)
             {
@@ -42,8 +42,8 @@ public class PauseMenu : MonoBehaviour
     // Otwórz menu g³ówne z ekranu pauzy
     public void LoadMenu()
     {
-        Time.timeScale = 1f;
         SceneManager.LoadScene("Menu");
+        Time.timeScale = 1f;
     }
     // Zamknij grê
     public void QuitGame()
