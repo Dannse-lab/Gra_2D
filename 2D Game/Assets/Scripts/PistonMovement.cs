@@ -8,9 +8,9 @@ public class PistonMovement : MonoBehaviour
     [SerializeField] private float upDistance; // Distance that piston will travel up
     [SerializeField] private float downSpeed; // Speed at which piston will be moving down
     [SerializeField] private float upSpeed; // Speed at which piston will be moving up
-    public bool movingDown; // Direction of piston's movement
-    public float upEdge; // Upper movement boundry
-    public float downEdge; // Bottom movement boundry
+    [HideInInspector] public bool movingDown; // Direction of piston's movement
+    [HideInInspector] public float upEdge; // Upper movement boundry
+    [HideInInspector] public float downEdge; // Bottom movement boundry
 
     // Function is called when the script instance is being loaded
     private void Awake()

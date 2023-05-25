@@ -5,15 +5,20 @@ using UnityEngine;
 public class PlayerHealth : MonoBehaviour
 {
     [Header ("Health")]
-    [SerializeField] public int maxHealth;
-    public int currentHealth;
-    public HealthBar healthBar;
-    public Animator anim;
+    [SerializeField] private int maxHealth; // Players max health
+    [SerializeField] private HealthBar healthBar; // Reference to healthbar object
+    [SerializeField] private Animator anim; // Reference to players animations
+    private int currentHealth; // Players current health
 
     [Header("iFrames")]
-    [SerializeField] public float iFramesDuration; // Duration of Players invulnerability
-    [SerializeField] public int numberOfFlashes; // How many times Player is gonna flash red after getting hurt
-    public SpriteRenderer spriteRender;
+    [SerializeField] private float iFramesDuration; // Duration of Players invulnerability
+    [SerializeField] private int numberOfFlashes; // How many times Player is gonna flash red after getting hurt
+    [SerializeField] private SpriteRenderer spriteRender; // Sprite Render
+
+    [Header("Starting Point")]
+    [SerializeField] private GameObject player; // Reference to player object
+    [SerializeField] private float startX; // Player's starting x coordinate
+    [SerializeField] private float startY; // Player's starting y coordinate
 
 
     // Start is called before the first frame update
@@ -25,7 +30,7 @@ public class PlayerHealth : MonoBehaviour
         spriteRender = GetComponent<SpriteRenderer>();
     }
 
-    // Update is called once per frame
+    // Taking damage whlie space is pressed for tetsing purposes
     void Update()
     {
         if(Input.GetKeyDown(KeyCode.Space))
@@ -54,7 +59,7 @@ public class PlayerHealth : MonoBehaviour
     {
         currentHealth = maxHealth; // Refilling health
         healthBar.SetHealth(currentHealth); // Updating health bar
-        // Taking Player back to start of level
+        player.transform.position = new Vector2(startX, startY); // Taking Player back to start of level
     }
 
     public IEnumerator Invunerability()

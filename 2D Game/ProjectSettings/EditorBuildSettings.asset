@@ -9,7 +9,7 @@ EditorBuildSettings:
     path: Assets/Scenes/Menu.unity
     guid: e7811f090dd0b5442afe3487936da709
   - enabled: 1
-    path: Assets/Scenes/Gra.unity
+    path: Assets/Scenes/Level1.unity
     guid: 2cda990e2423bbf4892e6590ba056729
   - enabled: 0
     path: Assets/SunnyLand Artwork/Scenes/Demo_characters.unity
