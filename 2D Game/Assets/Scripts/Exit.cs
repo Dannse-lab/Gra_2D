@@ -7,7 +7,7 @@ public class Exit : MonoBehaviour
 {
     void Start()
     {
-        Cursor.visible = false;
+        Cursor.visible = true;
     }
 
     void Update()
@@ -21,6 +21,6 @@ public class Exit : MonoBehaviour
     void GoBack()
     {
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex - 1);
-        Cursor.visible = true;
+        Cursor.visible = false;
     }
 }
