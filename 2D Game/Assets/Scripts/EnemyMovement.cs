@@ -10,7 +10,7 @@ public class EnemyMovement : MonoBehaviour
     [HideInInspector] public bool movingRight; // Direction of enemy's movement
     [HideInInspector] public float leftEdge; // Left movement boundry
     [HideInInspector] public float rightEdge; // Right movement boundry
-    [HideInInspector] private bool facingRight = true;  // For determining which way the enemy is currently facing
+    [SerializeField] public bool facingRight;  // For determining which way the enemy is currently facing
     [HideInInspector] public bool isAlive = true; // If enemy is alive
 
     // Function is called when the script instance is being loaded

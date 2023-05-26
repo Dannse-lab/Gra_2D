@@ -30,7 +30,7 @@ public class PlayerHealth : MonoBehaviour
         spriteRender = GetComponent<SpriteRenderer>();
     }
 
-    // Taking damage whlie space is pressed for tetsing purposes
+    // Taking damage whlie space is pressed for testsing purposes
     void Update()
     {
         if(Input.GetKeyDown(KeyCode.Space))
@@ -41,7 +41,7 @@ public class PlayerHealth : MonoBehaviour
 
     public void TakeDamage(int damage)
     {
-        currentHealth -= damage; // Subtracting damage value from health
+        currentHealth -= damage; // Subtracting damage value from current health
         healthBar.SetHealth(currentHealth); // Updating health bar
         if(currentHealth > 0)
         {
@@ -52,6 +52,15 @@ public class PlayerHealth : MonoBehaviour
         {
             anim.SetTrigger("Hurt"); // Triggering "Hurt" animation
             Die(); // Player dies
+        }
+    }
+
+    public void Heal(int heal)
+    {
+        if (currentHealth<maxHealth)
+        {
+            currentHealth += heal; // Adding heal value to current health
+            healthBar.SetHealth(currentHealth); // Updating health bar
         }
     }
 
