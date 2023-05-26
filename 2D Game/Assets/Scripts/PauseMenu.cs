@@ -6,14 +6,15 @@ using UnityEngine.SceneManagement;
 public class PauseMenu : MonoBehaviour
 {
     
-    public static bool GameIsPaused = false;
+    [HideInInspector] public static bool GameIsPaused = false;
 
-    public GameObject pauseMenuUI;
+    [SerializeField] private GameObject pauseMenuUI;
+    [SerializeField] private GameObject summary;
 
     // Sprawdza,czy gra jest zatrzymana czy nie, jak nie jest zatrzymana, to toczy siê gra, jak jest zatrzymana, to gra siê zatrzymuje
     void Update()
     {
-      if (Input.GetKeyDown(KeyCode.Escape))
+      if (Input.GetKeyDown(KeyCode.Escape) && !summary.activeSelf)
         {
             if (GameIsPaused)
             {
@@ -33,7 +34,7 @@ public class PauseMenu : MonoBehaviour
         GameIsPaused = false;
     }
     // Zatrzymaj grê
-    void Pause()
+    public void Pause()
     {
         pauseMenuUI.SetActive(true);
         Time.timeScale = 0f;
