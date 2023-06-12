@@ -43,8 +43,8 @@ public class PauseMenu : MonoBehaviour
     // Otwórz menu g³ówne z ekranu pauzy
     public void LoadMenu()
     {
-        SceneManager.LoadScene("Menu");
         Time.timeScale = 1f;
+        SceneManager.LoadScene("Menu");
     }
     // Zamknij grê
     public void QuitGame()
