@@ -10,13 +10,13 @@ public class Summary : MonoBehaviour
     [SerializeField] private TextMeshProUGUI cherryCount; // Text displaying number of collected cherrys
     [SerializeField] private TextMeshProUGUI enemyCount; // Text displaying number of defeated enemys
     [SerializeField] private TextMeshProUGUI timeCount; // Text displaying time
-    [SerializeField] private GameObject pauseMenuUI; // Reference to Pause Menu
+    [SerializeField] private GameObject summary; // Reference to Summary Menu
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.gameObject.CompareTag("End"))
+        if (collision.gameObject.CompareTag("End")) // If collided with object with tag 'end' (end of level)
         {
-            pauseMenuUI.SetActive(true); // Opening summary
+            summary.SetActive(true); // Opening summary
             Time.timeScale = 0f; // Stoping game
             gemCount.text = ItemCollector.gems.ToString(); // Setting text to number of collected gems
             cherryCount.text = ItemCollector.cherrys.ToString(); // Setting text to number of collected cherrys
@@ -27,7 +27,7 @@ public class Summary : MonoBehaviour
 
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Escape)) // If escape is pressed...
+        if (Input.GetKeyDown(KeyCode.Escape) && summary.activeSelf) // If escape is pressed...
         {
             Time.timeScale = 1f; // Resuming game
             SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1); // Loading next level

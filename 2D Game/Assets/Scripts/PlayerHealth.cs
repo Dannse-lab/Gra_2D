@@ -7,13 +7,13 @@ public class PlayerHealth : MonoBehaviour
     [Header ("Health")]
     [SerializeField] private int maxHealth; // Players max health
     [SerializeField] private HealthBar healthBar; // Reference to healthbar object
-    [SerializeField] private Animator anim; // Reference to players animations
+    private Animator anim; // Reference to players animations
     private int currentHealth; // Players current health
 
     [Header("iFrames")]
     [SerializeField] private float iFramesDuration; // Duration of Players invulnerability
     [SerializeField] private int numberOfFlashes; // How many times Player is gonna flash red after getting hurt
-    [SerializeField] private SpriteRenderer spriteRender; // Sprite Render
+    private SpriteRenderer spriteRender; // Sprite Render
 
     [Header("Starting Point")]
     [SerializeField] private GameObject player; // Reference to player object
@@ -51,6 +51,7 @@ public class PlayerHealth : MonoBehaviour
         else
         {
             anim.SetTrigger("Hurt"); // Triggering "Hurt" animation
+            StartCoroutine(Invunerability()); // Starting iframes function
             Die(); // Player dies
         }
     }
