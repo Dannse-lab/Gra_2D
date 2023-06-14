@@ -11,13 +11,13 @@ public class Timer : MonoBehaviour
 
     void Update()
     {
-        seconds += 1 * Time.deltaTime; // Adding time to seconds
-        if(seconds>=60)
+        seconds += 1 * Time.deltaTime; // Counting seconds
+        if(seconds>=60) // Transfering seconds to minutes and seconds
         {
             seconds -= 60;
             minutes++;
         }
-        timer = minutes.ToString("0") + ":" + seconds.ToString("00.0");
-        m_textMeshPro.SetText(timer); // Setting text to time
+        timer = minutes.ToString("0") + ":" + seconds.ToString("00.0"); // Transfering time to text
+        m_textMeshPro.SetText(timer); // Displaying text
     }
 }
