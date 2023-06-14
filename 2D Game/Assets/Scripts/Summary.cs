@@ -20,7 +20,7 @@ public class Summary : MonoBehaviour
             Time.timeScale = 0f; // Stoping game
             gemCount.text = ItemCollector.gems.ToString(); // Setting text to number of collected gems
             cherryCount.text = ItemCollector.cherrys.ToString(); // Setting text to number of collected cherrys
-            enemyCount.text = EnemyCount.enemys.ToString(); // Setting text to number of defeated enemys
+            enemyCount.text = CharacterController2D.enemys.ToString(); // Setting text to number of defeated enemys
             timeCount.text = Timer.timer; // Setting text to time at the end of the level
         }
     }

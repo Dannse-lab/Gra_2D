@@ -8,11 +8,12 @@ public class MainMenu : MonoBehaviour
 {
     public void PlayGame ()
     {
-        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
+        Cursor.visible = false;
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1); // Loading first level
     }
     public void QuitGame ()
     {
         Debug.Log("QUIT!");
-        Application.Quit();
+        Application.Quit(); // Closing the game
     }
 }

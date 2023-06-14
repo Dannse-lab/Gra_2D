@@ -3,16 +3,23 @@ using UnityEngine.Events;
 
 public class CharacterController2D : MonoBehaviour
 {
-    [SerializeField] private float m_JumpForce = 400f;                          // Amount of force added when the player jumps.
-    [Range(0, 1)][SerializeField] private float m_CrouchSpeed = .36f;           // Amount of maxSpeed applied to crouching movement. 1 = 100%
+    [SerializeField] private float m_JumpForce = 400f;                          // Amount of force added when the player jumps
+    [Range(0, 1)][SerializeField] private float m_CrouchSpeed = .36f;           // Amount of maxSpeed applied to crouching movement 1 = 100%
     [Range(0, .3f)][SerializeField] private float m_MovementSmoothing = .05f;   // How much to smooth out the movement
-    [SerializeField] private bool m_AirControl = false;                         // Whether or not a player can steer while jumping;
+    [SerializeField] private bool m_AirControl = false;                         // Whether or not a player can steer while jumping
     [SerializeField] private LayerMask m_WhatIsGround;                          // A mask determining what is ground to the character
-    [SerializeField] private Transform m_GroundCheck;                           // A position marking where to check if the player is grounded.
+    [SerializeField] private Transform m_GroundCheck;                           // A position marking where to check if the player is grounded
     [SerializeField] private Transform m_CeilingCheck;                          // A position marking where to check for ceilings
     [SerializeField] private Collider2D m_CrouchDisableCollider;                // A collider that will be disabled when crouching
     [SerializeField] private Collider2D m_CrouchEnableCollider;                // A collider that will be enabled when crouching
-    [SerializeField] private LayerMask whatIsHead;                             // A layer that player will interpret as enemy's head
+    [SerializeField] private LayerMask whatIsSlime;                            // A layer that player will interpret as slime's head
+    [SerializeField] private LayerMask whatIsBat;                             // A layer that player will interpret as bat's head
+    public static int enemys = 0;                                             // Number of killed enemys
+
+    [Header("SFX")]
+    [SerializeField] private AudioSource jumpSound; // Players jump sound
+    [SerializeField] public AudioSource slimeDeathSound; // Slime's death sound
+    [SerializeField] public AudioSource batDeathSound; // Bat's death sound
 
     const float k_GroundedRadius = .2f; // Radius of the overlap circle to determine if grounded
     private bool m_Grounded;            // Whether or not the player is grounded.
@@ -59,13 +66,25 @@ public class CharacterController2D : MonoBehaviour
                     OnLandEvent.Invoke();
             }
         }
-        // The Player destroys enemy if a circlecast to the groundcheck position hits anything designated as enemy's head
-        Collider2D[] coll = Physics2D.OverlapCircleAll(m_GroundCheck.position, k_GroundedRadius, whatIsHead);
-        for (int i = 0; i < coll.Length; i++)
+        // The Player destroys enemy if a circlecast to the groundcheck position hits anything designated as slime's head
+        Collider2D[] coll1 = Physics2D.OverlapCircleAll(m_GroundCheck.position, k_GroundedRadius, whatIsSlime);
+        for (int i = 0; i < coll1.Length; i++)
         {
-            if (coll[i].gameObject != gameObject && m_Rigidbody2D.velocity.y < 0)
+            if (coll1[i].gameObject != gameObject && m_Rigidbody2D.velocity.y < 0)
             {
-                Destroy(coll[i].gameObject.transform.parent.gameObject);
+                slimeDeathSound.Play();
+                enemys++;
+                Destroy(coll1[i].gameObject.transform.parent.gameObject);
+            }
+        }// The Player destroys enemy if a circlecast to the groundcheck position hits anything designated as bat's head
+        Collider2D[] coll2 = Physics2D.OverlapCircleAll(m_GroundCheck.position, k_GroundedRadius, whatIsBat);
+        for (int i = 0; i < coll2.Length; i++)
+        {
+            if (coll2[i].gameObject != gameObject && m_Rigidbody2D.velocity.y < 0)
+            {
+                batDeathSound.Play();
+                enemys++;
+                Destroy(coll2[i].gameObject.transform.parent.gameObject);
             }
         }
     }
@@ -148,6 +167,7 @@ public class CharacterController2D : MonoBehaviour
             // ... add a vertical force to the player.
             m_Grounded = false;
             m_Rigidbody2D.AddForce(new Vector2(0f, m_JumpForce));
+            jumpSound.Play(); // Play jump sound
         }
     }
 

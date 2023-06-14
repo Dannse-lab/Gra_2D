@@ -32,6 +32,7 @@ public class PauseMenu : MonoBehaviour
         pauseMenuUI.SetActive(false);
         Time.timeScale = 1f;
         GameIsPaused = false;
+        Cursor.visible = false; // Cursor disabled
     }
     // Zatrzymaj grê
     public void Pause()
@@ -39,6 +40,7 @@ public class PauseMenu : MonoBehaviour
         pauseMenuUI.SetActive(true);
         Time.timeScale = 0f;
         GameIsPaused = true;
+        Cursor.visible = true; // Cursor enabled
     }
     // Otwórz menu g³ówne z ekranu pauzy
     public void LoadMenu()

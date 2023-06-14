@@ -4,15 +4,13 @@ using UnityEngine;
 
 public class PlayerMovement : MonoBehaviour {
 
-    public CharacterController2D controller; // Reference to Player movement controlls
-    public Animator animator; // Refrence to Player animatior (animations set)
-
-    public float runSpeed = 40f; // Players max speed
-
-    float horizontalMove = 0f; // Players current speed
-
-    bool jump = false;
-    bool crouch = false;
+    [SerializeField] public CharacterController2D controller; // Reference to Player movement controlls
+    [SerializeField] public Animator animator; // Refrence to Player animatior (animations set)
+    [SerializeField] public float runSpeed = 40f; // Players max speed
+    
+    private float horizontalMove = 0f; // Players current speed
+    private bool jump = false;
+    private bool crouch = false;
 
     // Checking if...
     void Update()
